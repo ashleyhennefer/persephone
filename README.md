@@ -2,6 +2,36 @@ persephone
 ==========
 
 Code for game
+///Particals///
+///create///
+
+Sname=part_system_create()
+ 
+ particle1 = part_type_create();
+part_type_shape(particle1,pt_shape_square);
+part_type_size(particle1,0.01,0.03,0,0);
+part_type_scale(particle1,1,1);
+part_type_color3(particle1,5614335,33023,33023);
+part_type_alpha3(particle1,1,1,1);
+part_type_speed(particle1,1,2,0,2);
+part_type_direction(particle1,80,100,0,10);
+part_type_gravity(particle1,0.05,270);
+part_type_blend(particle1,0);
+part_type_life(particle1,1,50);
+emitter1 = part_emitter_create(Sname);
+
+
+part_emitter_region(Sname,emitter1,x-view_xview-20,x-view_xview+20,y-view_yview,y-view_yview,0,0);
+part_emitter_stream(Sname,emitter1,particle1,1);
+
+
+
+
+
+
+
+
+
 
 
 
