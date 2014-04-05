@@ -84,3 +84,53 @@ if(other.x>x ){
 
 
 
+////minime///////////////////////////////////////////////////////////////////////////
+///create////
+/// Initialise the "mini me"
+xp=x;
+sprite_index = walk_right;
+image_speed = 0.5;
+image_xscale= 0.75;
+image_yscale= 0.75;
+child = -1;
+
+msize = 20;
+mx = ds_queue_create();
+my = ds_queue_create();
+ms = ds_queue_create();
+ma = ds_queue_create();
+
+for(i=0;i<msize;i+=1){
+    ds_queue_enqueue(mx,x);
+    ds_queue_enqueue(my,y);
+    ds_queue_enqueue(ms,sprite_index);
+    ds_queue_enqueue(ma,image_index);
+}
+
+destid = id;
+
+
+///step///
+/// Update the position and animation of the mini-me
+
+
+// get last location, and the animation frames...
+x = ds_queue_dequeue(mx);
+y = ds_queue_dequeue(my);
+sprite_index = ds_queue_dequeue(ms);
+image_index = ds_queue_dequeue(ma);
+
+// Queue the NEXT location
+ds_queue_enqueue(mx,destid.x);
+ds_queue_enqueue(my,destid.y);
+ds_queue_enqueue(ms,destid.sprite_index);
+ds_queue_enqueue(ma,destid.image_index);
+
+///drsw////
+/// Draw the mini-me.
+
+// Offset here so that we can easily attach to other mini-me's
+draw_sprite_ext(sprite_index, image_index, x+4, y+8, image_xscale,image_yscale, 0, image_blend, 1.0);
+
+
+
